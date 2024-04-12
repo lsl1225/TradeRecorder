@@ -66,11 +66,11 @@ namespace TradeRecorder
 			this.PluginUi.Setting.Show();
 		}
 
-		private void OnLogin(object? sender, EventArgs e) {
+		private void OnLogin() {
 			homeWorldId = DalamudInterface.ClientState.LocalPlayer?.HomeWorld.Id ?? homeWorldId;
 		}
 
-		private void OnLogout(object? sender, EventArgs e) {
+		private void OnLogout() {
 			homeWorldId = 0;
 		}
 	}

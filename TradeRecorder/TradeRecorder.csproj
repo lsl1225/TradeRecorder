@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows7.0</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Platforms>x64;AnyCPU</Platforms>
 
     <Nullable>enable</Nullable>
@@ -19,7 +19,7 @@
 
 
   <PropertyGroup>
-    <DalamudLibPath>D:\FFXIV\Dalamud\addon\Hooks\dev\</DalamudLibPath>
+    <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
@@ -35,14 +35,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DalamudPackager" Version="2.1.7">
+    <PackageReference Include="DalamudPackager" Version="2.1.12">
       <GeneratePathProperty></GeneratePathProperty>
     </PackageReference>
-    <PackageReference Include="Lumina.Excel" Version="6.2.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Lumina.Excel" Version="6.5.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(DalamudLibPath)Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="Dalamud">
       <HintPath>$(DalamudLibPath)Dalamud.dll</HintPath>
       <Private>False</Private>

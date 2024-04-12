@@ -1,6 +1,5 @@
 ﻿using Dalamud.Game.Text;
 using Dalamud.Interface;
-using Dalamud.Logging;
 using ImGuiNET;
 using ImGuiScene;
 using Lumina.Excel.GeneratedSheets;
@@ -127,7 +126,7 @@ namespace TradeRecorder.Window
 							Chat.PrintWarning($"从剪贴板导入{items.Count}个预设");
 						} catch (Exception e) {
 							Chat.PrintMsg("从剪贴板导入失败");
-							PluginLog.Error("从剪贴板导入失败" + e.ToString());
+							DalamudInterface.PluginLog.Error("从剪贴板导入失败" + e.ToString());
 						}
 						Config.Save();
 					}
@@ -420,10 +419,8 @@ namespace TradeRecorder.Window
 				if (res == null) {
 					Chat.PrintWarning("无法从GitHub获取Opcode，返回为空");
 				} else {
-					Opcodes? opcodeInfo;
-					if (DalamudInterface.ClientState.ClientLanguage == Dalamud.ClientLanguage.ChineseSimplified) {
-						opcodeInfo = res.FirstOrDefault(i => i.Region.Equals("CN"));
-					} else {
+					Opcodes? opcodeInfo = null;
+					if (DalamudInterface.ClientState.ClientLanguage == Dalamud.ClientLanguage.English) {
 						opcodeInfo = res.FirstOrDefault(i => i.Region.Equals("Global"));
 					}
 					if (opcodeInfo == null) {
@@ -453,7 +450,7 @@ namespace TradeRecorder.Window
 				}
 			} catch (HttpRequestException e) {
 				Chat.PrintWarning("无法从GitHub获取Opcode，请检查是否可以访问到GitHub");
-				PluginLog.Error(e.ToString());
+				DalamudInterface.PluginLog.Error(e.ToString());
 			}
 			downloadingOpcode = false;
 		}
